@@ -1,11 +1,10 @@
 # Project 1 - Search
 
-**About Pacman**
+This project is based on pacman, you can view the options of this platform by
 
-    This project is based on pacman, you can view the options of this platform by
-    ```bash
-    python pacman.py -h
-    ```
+```bash
+python pacman.py -h
+```
 View the performance of each implemented algorithms by running the following examples
 - **Depth First Search (DFS)**
 

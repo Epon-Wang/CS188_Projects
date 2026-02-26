@@ -11,6 +11,7 @@ Available Projects
 | `<project_name>` | Description |
 |-------|-------------|
 |`search`   |[Project 1 Search](search/readme.md)|
+|`multiagent`   |[Project 2 Multi-Agent Search](multiagent/readme.md)|
 |`reinforcement`   |[Project 3 Reinforcement Learning](reinforcement/readme.md)|
 
 To check the overall results of this project
@@ -27,9 +28,14 @@ File Tree of projects with edited files
 
 ```
 CS188_Projects/
-├── reinforcement/  (Project 3)
+├── multiagent/                 (Project 2)
+│   └── multiAgents.py
+├── reinforcement/              (Project 3)
 │   ├── valueIterationAgents.py
 │   ├── qlearningAgents.py
 │   └── analysis.py
-└── search/         (Project 1)
+└── search/                     (Project 1)
+    ├── search.py
+    └── searchAgents.py
+
 ```
