@@ -86,18 +86,51 @@ def depthFirstSearch(problem: SearchProblem):
     print("Is the start a goal?", problem.isGoalState(problem.getStartState()))
     print("Start's successors:", problem.getSuccessors(problem.getStartState()))
     """
-    "*** YOUR CODE HERE ***"
-    util.raiseNotDefined()
+    fringe = util.Stack()
+    fringe.push((problem.getStartState(), []))
+    hist = []
+
+    while not fringe.isEmpty():
+        state, actions = fringe.pop()
+        if problem.isGoalState(state):
+            return actions
+        if state not in hist:
+            hist.append(state)
+            for next_s, next_a, _ in problem.getSuccessors(state):
+                fringe.push((next_s, actions + [next_a]))
+
 
 def breadthFirstSearch(problem: SearchProblem):
     """Search the shallowest nodes in the search tree first."""
-    "*** YOUR CODE HERE ***"
-    util.raiseNotDefined()
+    fringe = util.Queue()
+    fringe.push((problem.getStartState(), []))
+    hist = []
+
+    while not fringe.isEmpty():
+        state, actions = fringe.pop()
+        if problem.isGoalState(state):
+            return actions
+        if state not in hist:
+            hist.append(state)
+            for next_s, next_a, _ in problem.getSuccessors(state):
+                fringe.push((next_s, actions + [next_a]))
+
 
 def uniformCostSearch(problem: SearchProblem):
     """Search the node of least total cost first."""
-    "*** YOUR CODE HERE ***"
-    util.raiseNotDefined()
+    fringe = util.PriorityQueue()
+    fringe.push((problem.getStartState(), []), 0)
+    hist = []
+
+    while not fringe.isEmpty():
+        state, actions = fringe.pop()
+        if problem.isGoalState(state):
+            return actions
+        if state not in hist:
+            hist.append(state)
+            for next_s, next_a, _ in problem.getSuccessors(state):
+                fringe.push((next_s, actions + [next_a]), problem.getCostOfActions(actions + [next_a]))
+
 
 def nullHeuristic(state, problem=None):
     """
@@ -108,8 +141,20 @@ def nullHeuristic(state, problem=None):
 
 def aStarSearch(problem: SearchProblem, heuristic=nullHeuristic):
     """Search the node that has the lowest combined cost and heuristic first."""
-    "*** YOUR CODE HERE ***"
-    util.raiseNotDefined()
+    fringe = util.PriorityQueue()
+    fringe.push((problem.getStartState(), []), heuristic(problem.getStartState(), problem))
+    hist = []
+
+    while not fringe.isEmpty():
+        state, actions = fringe.pop()
+        if problem.isGoalState(state):
+            return actions
+        if state not in hist:
+            hist.append(state)
+            for next_s, next_a, _ in problem.getSuccessors(state):
+                dijkstra_cost = problem.getCostOfActions(actions + [next_a])
+                greedy_cost = heuristic(next_s, problem)
+                fringe.push((next_s, actions + [next_a]), dijkstra_cost + greedy_cost)
 
 
 # Abbreviations
